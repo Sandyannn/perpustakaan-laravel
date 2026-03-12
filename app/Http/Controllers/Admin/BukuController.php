@@ -60,7 +60,8 @@ class BukuController extends Controller
             'penerbit'     => 'required|string|max:255',
             'tahun_terbit' => 'required|integer|digits:4',
             'kategori_ids' => 'required|array',
-            'kategori_ids.*' => 'exists:kategoris,id',
+            'kategori_ids.*' => 'exists:kategori_bukus,id',
+            'stok' => 'required|integer|min:0',
         ]);
 
         $buku->update([
@@ -68,6 +69,7 @@ class BukuController extends Controller
             'penulis'      => $validatedData['penulis'],
             'penerbit'     => $validatedData['penerbit'],
             'tahun_terbit' => $validatedData['tahun_terbit'],
+            'stok' => $validatedData['stok'],
         ]);
 
         $buku->kategoris()->sync($request->kategori_ids);

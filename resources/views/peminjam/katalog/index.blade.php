@@ -31,37 +31,38 @@
                     <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
                         <div class="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
                             <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
-                                </path>
+                                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                             </svg>
                         </div>
 
                         <div class="p-4 flex-1">
                             <div class="flex gap-1 mb-2 flex-wrap">
                                 @foreach ($buku->kategoris as $k)
-                                    <span
-                                        class="bg-indigo-100 text-indigo-800 text-[10px] px-2 py-0.5 rounded-full">{{ $k->nama_kategori }}</span>
+                                    <span class="bg-indigo-100 text-indigo-800 text-[10px] px-2 py-0.5 rounded-full">{{ $k->nama_kategori }}</span>
                                 @endforeach
                             </div>
                             <h3 class="font-bold text-lg text-gray-900 leading-tight mb-1">{{ $buku->judul }}</h3>
-                            <p class="text-sm text-gray-600 mb-4 italic">Oleh: {{ $buku->penulis }}</p>
+                            <p class="text-sm text-gray-600 mb-2 italic">Oleh: {{ $buku->penulis }}</p>
+                            <p class="text-xs text-indigo-600 font-semibold">Tersedia: {{ $buku->stok }} unit</p>
                         </div>
 
-                        <div class="p-4 border-t bg-gray-50 flex gap-2">
+                        <div class="p-4 border-t bg-gray-50 flex flex-col gap-2">
                             <a href="{{ route('katalog.show', $buku->id) }}"
-                                class="flex-1 text-center bg-white border border-indigo-600 text-indigo-600 px-3 py-2 rounded text-sm font-semibold hover:bg-indigo-50">Detail</a>
+                                class="text-center bg-white border border-indigo-600 text-indigo-600 px-3 py-2 rounded text-sm font-semibold hover:bg-indigo-50">Detail</a>
+                            
                             @if ($buku->stok > 0)
-                                <form action="{{ route('peminjaman.store', $buku->id) }}" method="POST"
-                                    class="flex-1">
+                                <form action="{{ route('peminjaman.store', $buku->id) }}" method="POST" class="flex gap-2">
                                     @csrf
+                                    <input type="number" name="jumlah" value="1" min="1" max="{{ $buku->stok }}" 
+                                        class="w-16 rounded border-gray-300 text-sm focus:ring-indigo-500 focus:border-indigo-500 shadow-sm"
+                                        required>
                                     <button type="submit"
-                                        class="w-full bg-indigo-600 text-white px-3 py-2 rounded text-sm font-semibold hover:bg-indigo-700">Pinjam</button>
+                                        class="flex-1 bg-indigo-600 text-white px-3 py-2 rounded text-sm font-semibold hover:bg-indigo-700 transition">
+                                        Pinjam
+                                    </button>
                                 </form>
                             @else
-                                <button
-                                    class="flex-1 bg-gray-400 text-white px-3 py-2 rounded text-sm font-semibold cursor-not-allowed"
-                                    disabled>Habis</button>
+                                <button class="w-full bg-gray-400 text-white px-3 py-2 rounded text-sm font-semibold cursor-not-allowed" disabled>Stok Habis</button>
                             @endif
                         </div>
                     </div>

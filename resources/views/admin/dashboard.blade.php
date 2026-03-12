@@ -43,8 +43,8 @@
                                 <td class="p-2">{{ $order->user->name }}</td>
                                 <td class="p-2">{{ $order->buku->judul }}</td>
                                 <td class="p-2">
-                                    <span class="px-2 py-1 rounded text-xs {{ $order->status_peminjaman == 'dipinjam' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800' }}">
-                                        {{ ucfirst($order->status_peminjaman) }}
+                                    <span class="px-2 py-1 rounded text-xs {{ $order->status == 'dipinjam' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800' }}">
+                                        {{ ucfirst($order->status) }}
                                     </span>
                                 </td>
                             </tr>

@@ -10,7 +10,7 @@ class KategoriBukuController extends Controller
 {
     public function index()
     {
-        $kategoriBukus = KategoriBuku::latest()->get(); 
+        $kategoriBukus = KategoriBuku::latest()->get();
         return view('admin.kategori.index', compact('kategoriBukus'));
     }
 
@@ -22,7 +22,7 @@ class KategoriBukuController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nama_kategori' => 'required|string|max:255|unique:kategoris,nama_kategori',
+            'nama_kategori' => 'required|string|max:255|unique:kategori_bukus,nama_kategori',
         ]);
 
         KategoriBuku::create($validatedData);
@@ -30,30 +30,32 @@ class KategoriBukuController extends Controller
         return redirect()->route('kategori.index')->with('success', 'Kategori buku berhasil ditambahkan.');
     }
 
-    public function show(KategoriBuku $kategoriBuku)
+    public function show(KategoriBuku $kategori)
     {
-        return view('admin.kategori.show', compact('kategoriBuku'));
+        $kategori->load('bukus');
+
+        return view('admin.kategori.show', compact('kategori'));
     }
 
-    public function edit(KategoriBuku $kategoriBuku)
+    public function edit(KategoriBuku $kategori)
     {
-        return view('admin.kategori.edit', compact('kategoriBuku'));
+        return view('admin.kategori.edit', compact('kategori'));
     }
 
-    public function update(Request $request, KategoriBuku $kategoriBuku)
+    public function update(Request $request, KategoriBuku $kategori)
     {
         $validatedData = $request->validate([
-            'nama_kategori' => 'required|string|max:255|unique:kategoris,nama_kategori,' . $kategoriBuku->id,
+            'nama_kategori' => 'required|string|max:255|unique:kategori_bukus,nama_kategori,' . $kategori->id,
         ]);
 
-        $kategoriBuku->update($validatedData);
+        $kategori->update($validatedData);
 
         return redirect()->route('kategori.index')->with('success', 'Kategori buku berhasil diperbarui.');
     }
 
-    public function destroy(KategoriBuku $kategoriBuku)
+    public function destroy(KategoriBuku $kategori)
     {
-        $kategoriBuku->delete();
+        $kategori->delete();
 
         return redirect()->route('kategori.index')->with('success', 'Kategori buku berhasil dihapus.');
     }

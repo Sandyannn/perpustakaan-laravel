@@ -33,6 +33,7 @@
                             <td class="p-3 text-gray-600">{{ $index + 1 }}</td>
                             <td class="p-3 font-semibold">{{ $kategori->nama_kategori }}</td>
                             <td class="p-3 flex justify-center gap-4">
+                                <a href="{{ route('kategori.show', $kategori->id) }}" class="text-blue-600 hover:text-blue-800 font-bold">Show</a>
                                 <a href="{{ route('kategori.edit', $kategori->id) }}" class="text-yellow-600 hover:text-yellow-800 font-bold">Edit</a>
                                 <form action="{{ route('kategori.destroy', $kategori->id) }}" method="POST" onsubmit="return confirm('Menghapus kategori juga akan berdampak pada relasi buku. Yakin?')">
                                     @csrf @method('DELETE')

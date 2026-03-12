@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Detail Kategori: ') . $kategoriBuku->nama_kategori }}
+                {{ __('Detail Kategori: ') . $kategori->nama_kategori }}
             </h2>
             <a href="{{ route('kategori.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded text-sm">
                 &larr; Kembali
@@ -15,8 +15,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
                 <div class="p-6 text-gray-900">
                     <h3 class="text-lg font-bold mb-2">Informasi Kategori</h3>
-                    <p class="text-gray-600 text-sm">Nama Kategori: <span class="font-semibold text-gray-900">{{ $kategoriBuku->nama_kategori }}</span></p>
-                    <p class="text-gray-600 text-sm">Total Koleksi Buku: <span class="font-semibold text-gray-900">{{ $kategoriBuku->bukus->count() }} Judul</span></p>
+                    <p class="text-gray-600 text-sm">Nama Kategori: <span class="font-semibold text-gray-900">{{ $kategori->nama_kategori }}</span></p>
+                    <p class="text-gray-600 text-sm">Total Koleksi Buku: <span class="font-semibold text-gray-900">{{ $kategori->bukus->count() }} Judul</span></p>
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($kategoriBuku->bukus as $index => $buku)
+                            @forelse($kategori->bukus as $index => $buku)
                                 <tr class="border-b hover:bg-gray-50 transition">
                                     <td class="p-3 text-sm text-gray-600">{{ $index + 1 }}</td>
                                     <td class="p-3 text-sm font-bold">{{ $buku->judul }}</td>

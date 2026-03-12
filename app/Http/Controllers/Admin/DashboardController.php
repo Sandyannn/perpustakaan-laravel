@@ -15,7 +15,7 @@ class DashboardController extends Controller
             'total_buku'      => Buku::count(),
             'total_user'      => User::where('role', 'peminjam')->count(),
             'total_petugas'   => User::where('role', 'petugas')->count(),
-            'pinjaman_aktif'  => Peminjaman::where('status_peminjaman', 'dipinjam')->count(),
+            'pinjaman_aktif'  => Peminjaman::where('status', 'dipinjam')->count(),
             'recent_orders'   => Peminjaman::with(['user', 'buku'])->latest()->take(5)->get(),
         ];
 

@@ -15,7 +15,8 @@ use App\Http\Controllers\Peminjam\KoleksiController;
 use App\Http\Controllers\Peminjam\UlasanController;
 
 Route::get('/', function () {
-    return view('welcome');
+    $bukus = \App\Models\Buku::with('kategoris')->latest()->take(8)->get();
+    return view('welcome', compact('bukus'));
 });
 
 require __DIR__.'/auth.php';
@@ -33,6 +34,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('kategori', KategoriBukuController::class);
 
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+        Route::patch('/peminjaman/{id}/verifikasi', [LaporanController::class, 'verifikasiKembali'])
+         ->name('admin.peminjaman.verifikasi');
 
         Route::middleware('role:administrator')->group(function () {
             Route::resource('users', UserController::class);

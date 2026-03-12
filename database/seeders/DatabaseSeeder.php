@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name'      => 'Admin Perpustakaan',
             'username'  => 'admin',
-            'email'     => 'admin@digitalibrary.com',
+            'email'     => 'admin@gmail.com',
             'password'  => Hash::make('password'),
             'role'      => 'administrator',
             'alamat'    => 'Malang, Jawa Timur',
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name'      => 'Petugas Satu',
             'username'  => 'petugas',
-            'email'     => 'petugas@digitalibrary.com',
+            'email'     => 'petugas@gmail.com',
             'password'  => Hash::make('password'),
             'role'      => 'petugas',
             'alamat'    => 'Malang, Jawa Timur',

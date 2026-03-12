@@ -19,6 +19,7 @@
 
                     @if (Auth::user()->role === 'administrator' || Auth::user()->role === 'petugas')
                         <x-nav-link :href="route('buku.index')">Pendataan Buku</x-nav-link>
+                        <x-nav-link :href="route('kategori.index')">Kategori Buku</x-nav-link>
                         <x-nav-link :href="route('laporan.index')">Laporan</x-nav-link>
                     @endif
 

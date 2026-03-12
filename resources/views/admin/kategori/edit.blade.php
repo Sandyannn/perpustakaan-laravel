@@ -8,13 +8,13 @@
     <div class="py-12">
         <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white p-6 rounded-lg shadow">
-                <form action="{{ route('kategori.update', $kategoriBuku->id) }}" method="POST">
+                <form action="{{ route('kategori.update', $kategori->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     
                     <div>
                         <x-input-label for="nama_kategori" :value="__('Nama Kategori')" />
-                        <x-text-input id="nama_kategori" class="block mt-1 w-full" type="text" name="nama_kategori" :value="old('nama_kategori', $kategoriBuku->nama_kategori)" required autofocus />
+                        <x-text-input id="nama_kategori" class="block mt-1 w-full" type="text" name="nama_kategori" :value="old('nama_kategori', $kategori->nama_kategori)" required autofocus />
                         <x-input-error :messages="$errors->get('nama_kategori')" class="mt-2" />
                     </div>
 

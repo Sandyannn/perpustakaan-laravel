@@ -5,7 +5,7 @@
                 {{ __('Manajemen Buku') }}
             </h2>
             <a href="{{ route('buku.create') }}"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm">
+                class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded text-sm transition shadow-md">
                 + Tambah Buku
             </a>
         </div>
